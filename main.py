@@ -24,7 +24,7 @@ def j_helper(words, end, L):
         start_index -= 1
         word_length = length_helper(words, start_index, end)
     # Because you can keep throwing it back until the word_length is larger
-    return start_index + 1
+    return start_index 
 
 
 def dp(arr, L):
@@ -32,6 +32,7 @@ def dp(arr, L):
     # breaks = [0 for _ in range(len(arr) + 1)]
     # penalty[0], breaks[0] = 0, 0
     penalty = []
+    # our breaks will be 0-indexed
     breaks = []
     # penalty.append(0)
     # breaks.append(0)
@@ -52,7 +53,7 @@ def dp(arr, L):
                 cur_penalty = penalty[j] + ((L-length_helper(arr, j+1, i)) ** 3)
                 if(cur_penalty < cur_min):
                     cur_min = cur_penalty
-                    cur_break = j # if cur length is over limit
+                    cur_break = j
 
             breaks.append(cur_break)
             penalty.append(cur_min)
