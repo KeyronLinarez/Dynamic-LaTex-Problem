@@ -4,9 +4,10 @@ import math
 def length_helper(words, i, j):
     """
     this calculates the total of the words
+
+
     """
     # Calculate the sum of the lengths of words from index i to j-1, adding 1 for each space
-
     total_length = sum(len(words[k]) + 1 for k in range(i, j))
     # Add the length of the last word w_j (no space after the last word)
     total_length += len(words[j])
@@ -32,8 +33,8 @@ def dp(arr, L):
     # penalty[0], breaks[0] = 0, 0
     penalty = []
     breaks = []
-    penalty.append(0)
-    breaks.append(0)
+    # penalty.append(0)
+    # breaks.append(0)
 
     for i in range(0, len(arr)): # might have to swap the 0 for 1
         if (length_helper(arr,0, i) <= L):
@@ -46,17 +47,18 @@ def dp(arr, L):
             start_j = j_helper(arr, i, L)
 
             for j in range(start_j, i):
-                cur_penalty = penalty[j] + (L-length_helper(arr, j+1, i)) ** 3
+                print(penalty[j])
+                print(j)
+                cur_penalty = penalty[j] + ((L-length_helper(arr, j+1, i)) ** 3)
                 if(cur_penalty < cur_min):
                     cur_min = cur_penalty
-                    cur_break = j
+                    cur_break = j # if cur length is over limit
 
             breaks.append(cur_break)
             penalty.append(cur_min)
-    
-    print(breaks)
-    print(penalty)
 
+    print(penalty)
+    print(breaks)
 
 def main(): 
 
